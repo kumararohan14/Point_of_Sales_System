@@ -96,7 +96,7 @@ this.registerEvents = function(){
 
         if(targetEiClasslist.contains('productImage') || targetEiClasslist.contains('productName')){
                 let productContainer = targetEi.closest('div.productColContainer');
-                console.log(productContainer)
+                
 
                 let pid = productContainer.dataset.pid;
                 let productInfo = loadScript.products[pid]
@@ -119,6 +119,16 @@ this.registerEvents = function(){
                 const orderQty = parseInt(inputVal);
 
                 loadScript.addToOrder(productInfo,pid,orderQty);
+        }
+
+        if(targetEiClasslist.contains('deleteOrderItem')){
+            let pid = targetEi.dataset.id;
+            let productInfo = loadScript.orderItems[pid];
+            let orderedquantity = productInfo['orderQty'];
+            loadScript.products[pid]['stock'] += orderedquantity;
+
+            delete loadScript.orderItems[pid];
+            loadScript.updateOrderItemTable();
         }
     });
     }
@@ -154,6 +164,11 @@ this.registerEvents = function(){
                         <td>${orderItems['price']}</td>
                         <td>${orderItems['orderQty']}</td>
                         <td>${orderItems['amount']}</td>
+                        <td>
+                            <a href = "javascript:void(0);" > <i class="fa fa-edit"></i></a>
+                            <a href = "javascript:void(0);" class="deleteOrderItem" data-id="${pid}" > 
+                                <i class="fa fa-trash deleteOrderItem" c data-id="${pid}"></i></a>
+                        </td>
                         
                     </tr>
                 `
