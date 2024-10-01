@@ -106,17 +106,17 @@ span.item_total_value {
     float: right;
     font-weight: bold;
     color: #575052;
-    font-size: 34px;
+    font-size: 28px;
 }
 
 span.item_total_label {
-    font-size: 21px;
+    font-size: 24px;
     margin-top: 10px;
     display: inline-block;
 }
 
 .checkoutBtnContainer {
-    margin-top: 200px;
+    margin-top: 84px;
     padding: 20px;
 }
 
@@ -137,4 +137,8 @@ span.item_total_label {
 }
 .item_total_container{
     margin-top: 100px;
+}
+
+.pos-items table{
+    width: 100%;
 }
