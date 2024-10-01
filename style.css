@@ -1,4 +1,4 @@
-.searchInputContainer{
+.searchInputContainer input{
     width: 100%;
     height: S4px;
     font-size: 19px;
@@ -6,7 +6,9 @@
     border: 1px solid #b4b0b0;
     border-radius: 4px;
 }
-
+.searchInputContainer{
+    margin-top: 10px;
+}
 .searchResultContainer{
     margin: 20px;
 }
@@ -47,7 +49,7 @@
     cursor: pointer;
 }
 .posOrderContainer{
-    padding: 0px;
+    padding: 10px;
     border-radius: 4px solid #b5153d;
 }
 
@@ -55,6 +57,7 @@
     background: #ff5c85;
     text-align: center;
     background: #ff5c85;
+    padding-bottom: 10px;
   }
   
   .pos_header .logo {
@@ -72,4 +75,66 @@
   .alignRight {
     text-align: right !important;
   }
-  
+  .setting a{
+    font-size: 38px;
+    margin-right: 13px;
+  }
+
+   #pos_items_tbl th {
+    color: green;
+   }
+
+   #pos_items_tbl td {
+    font-size: 18px;
+    color: #575052;
+}
+
+#pos_items_tbl tbody tr:nth-child(odd) {
+    background: #ffe3ea;
+}
+
+.pos_item_btn {
+    color: #ff5c85;
+}
+
+p.item_total {
+    padding-left: 10px;
+    padding-right: 14px;
+}
+
+span.item_total_value {
+    float: right;
+    font-weight: bold;
+    color: #575052;
+    font-size: 34px;
+}
+
+span.item_total_label {
+    font-size: 21px;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.checkoutBtnContainer {
+    margin-top: 200px;
+    padding: 20px;
+}
+
+.checkoutBtn {
+    font-size: 45px;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    border: 2px solid #ff5c85;
+    border-radius: 5px;
+    color: #ff5c85; 
+}
+
+.checkoutBtn:hover{
+    background: #ff5c85;
+    color: #fff;
+    transition: 0.3s;
+}
+.item_total_container{
+    margin-top: 100px;
+}
