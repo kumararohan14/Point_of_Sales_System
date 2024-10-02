@@ -40,18 +40,18 @@
 let script = function(){
 
     this.orderItems = {};
-    this.totalOrderAmount = 0.00;
+    
 
     this.products = {
         32:{
             name : 'Toblerone',
             stock : 13,
-            price : 42.52
+            price : 40
         },
         33:{
             name : 'Milo',
             stock : 13,
-            price : 70.00
+            price : 70
         }
     };
 
@@ -100,7 +100,7 @@ this.registerEvents = function(){
 
                 let pid = productContainer.dataset.pid;
                 let productInfo = loadScript.products[pid]
-                console.log("productContainer "+productContainer);
+                console.log(productContainer);
                 console.log('eka wada');
 
                 // let dialogForm = '\
@@ -130,12 +130,53 @@ this.registerEvents = function(){
             delete loadScript.orderItems[pid];
             loadScript.updateOrderItemTable();
         }
+
+        if(targetEiClasslist.contains('quantityUpdateBtn_minus')){
+            console.log(targetEi);
+            console.log(targetEiClasslist);
+            let pid = targetEi.dataset.id;
+            let productInfo = loadScript.products[pid];
+
+            loadScript.products[pid]['stock']++;
+            loadScript.orderItems[pid]['orderQty']--;
+            
+
+            //update new amount
+            loadScript.orderItems[pid]['amount'] = loadScript.orderItems[pid]['orderQty']*loadScript.orderItems[pid]['price'];
+            //if the orderqty is zero ,delete
+
+            if(loadScript.orderItems[pid]['orderQty']==0){
+                delete loadScript.orderItems[pid];
+            }
+            loadScript.updateOrderItemTable();
+        }
+
+        if(targetEiClasslist.contains('quantityUpdateBtn_plus')){
+            
+            let pid = targetEi.dataset.id;
+            let productInfo = loadScript.products[pid];
+
+            loadScript.products[pid]['stock']--;
+            loadScript.orderItems[pid]['orderQty']++;
+            
+            if(loadScript.products[pid]['stock'] ===0){
+                alert("we are sorry! stock is zero")
+            }
+
+            //update new amount
+            loadScript.orderItems[pid]['amount'] = loadScript.orderItems[pid]['orderQty']*loadScript.orderItems[pid]['price'];
+            //if the orderqty is zero ,delete
+
+        
+            loadScript.updateOrderItemTable();
+        }
     });
     }
 
     this.updateOrderItemTable = function(){
         let ordersContainer = document.querySelector('.pos-items');
         let html = '<p class="itemNoData">No data</p>';
+        this.totalOrderAmount = 0.00;
 
         if(Object.keys(loadScript.orderItems)){
             let tableHtml = `
@@ -162,8 +203,14 @@ this.registerEvents = function(){
                         <td>${rowNum}</td>
                         <td>${orderItems['name']}</td>
                         <td>${orderItems['price']}</td>
-                        <td>${orderItems['orderQty']}</td>
-                        <td>${orderItems['amount']}</td>
+                        <td>${orderItems['orderQty']}
+                            <a href="javascript:void(0);">
+                                <i class="fa fa-minus quantityUpdateBtn quantityUpdateBtn_minus" data-id="${pid}" ></i></a>
+                            <a href="javascript:void(0);" class="quantityUpdateBtn quantityUpdateBtn_plus" data-id="${pid}">
+                                <i class="fa fa-plus quantityUpdateBtn quantityUpdateBtn_plus " data-id="${pid}" ></i></a>
+                        </td>
+                        <td>${orderItems['amount']}
+                        </td>
                         <td>
                             <a href = "javascript:void(0);" > <i class="fa fa-edit"></i></a>
                             <a href = "javascript:void(0);" class="deleteOrderItem" data-id="${pid}" > 

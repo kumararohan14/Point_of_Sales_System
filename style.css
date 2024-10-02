@@ -142,3 +142,15 @@ span.item_total_label {
 .pos-items table{
     width: 100%;
 }
+
+.quantityUpdateBtn{
+    text-decoration: none;
+    font-size: 15px;
+}
+.quantityUpdateBtn_minus{
+    color: #ef0000;
+}
+
+.quantityUpdateBtn_plus{
+    color: #17b70e;
+}
